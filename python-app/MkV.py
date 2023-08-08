@@ -15,6 +15,7 @@ import time
 with open("cisco_database.json", "r") as f:
     CiscoImage = json.load(f)
 
+#Try to detect model
 def get_model(connection):
     model = ''
     try:
@@ -23,14 +24,14 @@ def get_model(connection):
             if "cisco" in line.lower() and "processor" in line.lower():
                 model = line.split(",")[0].split(" ")[1]
                 print("Model Found: {}".format(model))
-
+        #If model is not found using the above method, try to find it using the below method
         if model == '':
             output = connection.send_command('sh ver')
             matches = re.findall("Cisco\s+(.*?)\s\Wrevision", output)
             if matches:
                 model = matches[0]
                 print("Model Found: {}".format(model))
-
+        #If model is not found using the above method, we failed to find the model
         if model == '':
             print('Model Recognition Failed')
         return model
@@ -69,8 +70,8 @@ def connect_and_manage(device, user, password, device_type, tftp_ip, cfg_file, s
     try:
         connection = ConnectHandler(**cisco_device)
         print('Success!!!')
-    except Exception:
-        print("Connection failed!!!")
+    except Exception as e:
+        print("Connection failed!!!" + str(e))
         return
 
     print('Searching for model...')
@@ -149,17 +150,17 @@ def connect_and_manage(device, user, password, device_type, tftp_ip, cfg_file, s
     connection.disconnect()
 
 
-def main(device_list, tftp_ip, cfg_file, selection):
+def main(device_list2, tftp_ip2, cfg_file2, selection):
     tftp_ip = '0.0.0.0'
     cfg_file = 'na.txt'
 
-    tftp_ip = tftp_ip  # Remove this line, as it's now passed as an argument
-    cfg_file = cfg_file  # Remove this line, as it's now passed as an argument
+    tftp_ip = tftp_ip2  # Remove this line, as it's now passed as an argument
+    cfg_file = cfg_file2  # Remove this line, as it's now passed as an argument
 
     password = 'password'
     user = 'jared'
     device_type = 'autodetect'
-    device_list = device_list
+    device_list = device_list2
     
     devices = read_list(device_list)
     
@@ -174,7 +175,3 @@ def main(device_list, tftp_ip, cfg_file, selection):
         
     for thread in config_threads:
         thread.join()
-
-
-if __name__ == "__main__":
-    main()
