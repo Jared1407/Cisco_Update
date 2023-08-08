@@ -1,0 +1,13 @@
+{
+	"C9300-48P": "cat9k_iosxe.17.09.03.SPA.bin",
+    "C9200L-48P-4X": "cat9k_lite_iosxe.17.06.05.SPA.bin",
+    "WS-C3560CX-8XPD-S": "c3560cx-universalk9-mz.152-7.E7.bin",
+    "C9300L": "cat9k_lite_iosxe.17.06.05.SPA.bin",
+    "C9200": "cat9k_iosxe.17.09.03.SPA.bin",
+    "WS-C3650-48PD": "old-ass-image.txt",
+    "CISCO2901/K9": "old-ass-image.txt",
+    "WS-C3560CG-8TC-S": "old-ass-image.txt",
+    "ISR4331/K9": "isr4300-universalk9.17.09.03a.SPA.bin",
+	"C9200*":"cat9k_lite_iosxe.17.06.05.SPA.bin",
+	"C9300*":"cat9k_iosxe.17.09.03.SPA.bin"
+}
