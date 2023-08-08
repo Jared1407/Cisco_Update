@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href='/static/main.css'/>
+    <title>Edit Cisco Database</title>
+</head>
+<body>
+    <h1>Edit Cisco Database</h1>
+    <form action="/edit_database" method="post">
+        <label for="new_database">Edit Cisco Database JSON:</label><br>
+        <textarea id="new_database" name="new_database" rows="15" cols="80">{{ current_database }}</textarea><br><br>
+        <button type="submit">Update Database</button>
+    </form>
+    <br>
+    <a href="/">Back to Home</a>
+</body>
+</html>

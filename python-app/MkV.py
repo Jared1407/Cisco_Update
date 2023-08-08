@@ -72,7 +72,7 @@ def connect_and_manage(device, user, password, device_type, tftp_ip, cfg_file, s
         print('Success!!!')
     except Exception as e:
         print("Connection failed!!!" + str(e))
-        return
+        exit()
 
     print('Searching for model...')
     model = get_model(connection)
