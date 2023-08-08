@@ -1,7 +1,10 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
 	<link rel="stylesheet" href='/static/main.css'/>
-<title>Cisco Device Manager</title>
+    <title>Cisco Device Manager</title>
+    <h1>Cisco Device Manager</h1>
+</head>
 <script>
 function toggleFields() {
 	
@@ -22,7 +25,6 @@ function toggleFields() {
 }
 
 </script>
-</head>
 <body>
 <form action="/" method="post" onsubmit="toggleFields()">
 <label for='device_list'>Device List File Name:</label>
@@ -46,7 +48,8 @@ function toggleFields() {
 </div>
 
 <button type="submit">Submit</button>
-</form>
 <button type="Edit Database"><a href="/edit_database">Edit Database</a></button>
+</form>
 </body>
+
 </html>

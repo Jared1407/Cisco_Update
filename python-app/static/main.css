@@ -2,6 +2,7 @@ body {
     font-family: Arial, sans-serif;
     text-align: center;
     background-color: #fff; /* White background */
+    border: 1px solid #c4c4c4;
 }
 
 form {
