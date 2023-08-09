@@ -23,10 +23,14 @@ function toggleFields() {
         cfgFileField.style.display = "none";
 	}
 }
-
+// If an error is passed to the page, display it in an alert box
+var error = "{{error}}";
+if (error) {
+    alert(error);
+}
 </script>
 <body>
-<h3>Error: Submit failed{{e}}</h3>
+
 <form action="/" method="post" onsubmit="toggleFields()">
 <label for='device_list'>Device List File Name:</label>
 <input type='text' id='device_list' name='device_list'>
