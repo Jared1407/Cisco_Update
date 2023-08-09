@@ -1,4 +1,6 @@
 from flask import Flask, render_template, request
+from werkzeug.utils import secure_filename
+import os
 import MkV
 
 app = Flask(__name__)
@@ -39,6 +41,37 @@ def edit_database():
 
     return render_template('edit_database.html', current_database=current_database)
 
+
+
+
+
+UPLOAD_FOLDER = 'uploads'
+ALLOWED_EXTENSIONS = {'bin','txt'}
+app.config['MAX_CONTENT_LENGTH'] = 16 * 10240 * 10240
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+
+#Upload page:
+@app.route('/upload', methods=['GET', 'POST'])
+def upload_images():
+    if request.method == 'POST':
+        # check if the post request has the file part
+        if 'file' not in request.files:
+            return render_template('upload.html', error='No file part')
+        file = request.files['file']
+
+        if file.filename == '':
+            return render_template('upload.html', error='No selected file')
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            return render_template('upload.html', success='File uploaded successfully')
+    
+    return render_template('upload.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
