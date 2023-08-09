@@ -42,9 +42,6 @@ def edit_database():
     return render_template('edit_database.html', current_database=current_database)
 
 
-
-
-
 UPLOAD_FOLDER = 'uploads'
 ALLOWED_EXTENSIONS = {'bin','txt'}
 app.config['MAX_CONTENT_LENGTH'] = 16 * 10240 * 10240

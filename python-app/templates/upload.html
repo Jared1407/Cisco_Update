@@ -4,6 +4,17 @@
     <link rel="stylesheet" href='/static/main.css'/>
     <title>Upload</title>
 </head>
+<script>
+var error = "{{error}}";
+var success = "{{success}}";
+
+if (error) {
+    alert(error);
+} else if (success) {
+    alert(success);
+}
+
+</script>
 <body>
     <h1>Upload New Images</h1>
     <form method="POST" enctype="multipart/form-data">
