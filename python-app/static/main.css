@@ -1,8 +1,8 @@
 body {
     font-family: Arial, sans-serif;
     text-align: center;
-    background-color: #fff; /* White background */
-    border: 1px solid #c4c4c4;
+    background-color: #69a2f7; /* White background */
+    
 }
 
 form {
@@ -35,7 +35,7 @@ select {
 #cfg_file_field {
     display: none;
     margin-bottom: 10px;
-    margin-right: 65px;
+    margin-right: 200%;
 	width: 100%
 }
 
