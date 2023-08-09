@@ -11,6 +11,9 @@ import time
 import getpass
 import time
 
+#Create a list to store the data returned by each thread
+data = {}
+
 # Database of switch versions and images
 with open("cisco_database.json", "r") as f:
     CiscoImage = json.load(f)
@@ -72,7 +75,8 @@ def connect_and_manage(device, user, password, device_type, tftp_ip, cfg_file, s
         print('Success!!!')
     except Exception as e:
         print("Connection failed!!!" + str(e))
-        exit()
+        data[device['ipaddr']] = 'False: Connection failed'
+        return
 
     print('Searching for model...')
     model = get_model(connection)
@@ -163,7 +167,8 @@ def main(device_list2, tftp_ip2, cfg_file2, selection):
     device_list = device_list2
     
     devices = read_list(device_list)
-    
+
+    #Create a list of threads
     config_threads = []
     
     for ipaddr, device in devices.items(): # for each device create a new thread and send its credentials
@@ -172,6 +177,11 @@ def main(device_list2, tftp_ip2, cfg_file2, selection):
     for thread in config_threads:
         print("started a thread")
         thread.start()
+
         
     for thread in config_threads:
         thread.join()
+
+    print("All threads finished")
+
+    return data

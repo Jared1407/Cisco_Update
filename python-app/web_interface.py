@@ -6,15 +6,21 @@ app = Flask(__name__)
 @app.route('/', methods=['GET', 'POST'])
 def manage_devices():
     if request.method == 'POST':
+        data = []
         try:
             device_list = request.form['device_list']
             tftp_ip = request.form.get('tftp_ip')  # Use get method to handle missing field
             cfg_file = request.form.get('cfg_file')  # Use get method to handle missing field
             selection = request.form['selection']
 
-            MkV.main(device_list, tftp_ip, cfg_file, selection)
+            data = MkV.main(device_list, tftp_ip, cfg_file, selection)
 
-            return 'Devices managed successfully'
+            #Parse data, If we find 'False' in the data, we know something went wrong
+            for key, value in data:
+                if 'False' in value:
+                    return render_template('index.html', error='Connection Failed')
+
+            return render_template('index.html')
         except Exception as e:
             return render_template('index.html', error=e)
     else:
