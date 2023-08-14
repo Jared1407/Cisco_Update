@@ -26,6 +26,7 @@ def manage_devices():
                 return render_template('index.html')
             except Exception as e:
                 return render_template('index.html', error=e)
+            
         elif request.form['Submit'] == 'Edit Database':
             return redirect('/edit_database')
             
@@ -35,13 +36,25 @@ def manage_devices():
 @app.route('/edit_database', methods=['GET', 'POST'])
 def edit_database():
     if request.method == 'POST':
-        new_database = request.form['new_database']  # Get the edited JSON data from the form
-        with open('cisco_database.json', 'w') as f:
-            f.write(new_database)  # Write the updated JSON data to the file
-        #return 'Database updated successfully'
+        if request.form['Submit'] == "Update Database":
+            new_database = request.form['new_database']  # Get the edited JSON data from the form
+            with open('cisco_database.json', 'w') as f:
+                f.write(new_database)  # Write the updated JSON data to the file
+            #return 'Database updated successfully'
 
+        if request.form['Submit'] == "Back Home":
+            return redirect('/')
+        
+        if request.form['Submit'] == "Link to Cisco Database":
+            return redirect('https://software.cisco.com/download/home')
+        
+        if request.form['Submit'] == "Upload Images":
+            return redirect('/upload')
+        
     with open('cisco_database.json', 'r') as f:
         current_database = f.read()
+
+    
 
     return render_template('edit_database.html', current_database=current_database)
 
