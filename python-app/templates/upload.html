@@ -19,10 +19,13 @@ if (error) {
     <h1>Upload New Images</h1>
     <form method="POST" enctype="multipart/form-data">
         <input type="file" name="file">
-        <input type="submit" value="Upload">
+        <input type="submit" name="Submit" value="Upload">
+        <input type="submit" name="Submit" value="Back Home">
+        <input type="submit" name="Submit" value="Back to Database">
     </form>
+    <form method="POST" target="_blank">
+        <input type="submit" name="Submit" value="Link to Cisco Database">
+    </form>
+
 </body>
-<button type="Back Home"><a href="/">Back Home</a></button>
-    <button type="Link to Cisco Database"><a href="https://software.cisco.com/download/home" target="_blank" rel="noopener noreferrer">Link to Cisco Database</a></button>
-    <button type="Edit Database"><a href="/edit_database">Back to Database</a></button>
 </html>

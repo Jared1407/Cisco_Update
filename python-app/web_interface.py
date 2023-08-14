@@ -73,18 +73,24 @@ def allowed_file(filename):
 @app.route('/upload', methods=['GET', 'POST'])
 def upload_images():
     if request.method == 'POST':
-        # check if the post request has the file part
-        if 'file' not in request.files:
-            return render_template('upload.html', error='No file part')
-        file = request.files['file']
+        if request.form['Submit'] == "Upload":
+            # check if the post request has the file part
+            if 'file' not in request.files:
+                return render_template('upload.html', error='No file part')
+            file = request.files['file']
 
-        if file.filename == '':
-            return render_template('upload.html', error='No selected file')
-        if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            return render_template('upload.html', success='File uploaded successfully')
-    
+            if file.filename == '':
+                return render_template('upload.html', error='No selected file')
+            if file and allowed_file(file.filename):
+                filename = secure_filename(file.filename)
+                file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+                return render_template('upload.html', success='File uploaded successfully')
+        if request.form['Submit'] == "Back Home":
+            return redirect('/')
+        if request.form['Submit'] == "Link to Cisco Database":
+            return redirect('https://software.cisco.com/download/home')
+        if request.form['Submit'] == "Back to Database":
+            return redirect('/edit_database')
     return render_template('upload.html')
 
 if __name__ == '__main__':
