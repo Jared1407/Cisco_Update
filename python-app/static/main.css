@@ -1,7 +1,7 @@
 body {
     font-family: Arial, sans-serif;
     text-align: center;
-    background-color: #69a2f7; /* White background */
+    background-color: #d0d4da; /* White background */
     
 }
 
@@ -40,7 +40,7 @@ select {
 }
 
 button {
-    background-color: #4CAF50;
+    background-color: #4d83e7;
     color: white;
     padding: 10px 20px;
     margin-right: 20px;
@@ -50,5 +50,5 @@ button {
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: #4bbbdd;
 }
