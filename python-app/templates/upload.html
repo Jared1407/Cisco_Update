@@ -1,31 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <link rel="stylesheet" href='/static/main.css'/>
-    <title>Upload</title>
-</head>
-<script>
-var error = "{{error}}";
-var success = "{{success}}";
+{% extends "base.html" %}
 
-if (error) {
-    alert(error);
-} else if (success) {
-    alert(success);
-}
+{% block title %}Upload Images{% endblock %}
 
-</script>
-<body>
-    <h1>Upload New Images</h1>
-    <form method="POST" enctype="multipart/form-data">
-        <input type="file" name="file">
-        <input type="submit" name="Submit" value="Upload">
-        <input type="submit" name="Submit" value="Back Home">
-        <input type="submit" name="Submit" value="Back to Database">
-    </form>
-    <form method="POST" target="_blank" rel="noopener noreferrer">
-        <input type="submit" name="Submit" value="Link to Cisco Database">
-    </form>
-
-</body>
-</html>
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8 col-md-10">
+        <div class="card bg-dark text-light">
+            <div class="card-header">
+                <h3 class="card-title">Upload New Firmware Images</h3>
+            </div>
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="file" class="form-label">Select a file (.bin or .txt):</label>
+                        <input class="form-control" type="file" name="file" id="file" required>
+                    </div>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                        <button type="submit" name="Submit" value="Upload" class="btn btn-primary">Upload File</button>
+                        <button type="submit" name="Submit" value="Back to Database" class="btn btn-secondary">Back to Database</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
